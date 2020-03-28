@@ -1,4 +1,5 @@
 from datetime import datetime, date
+from .models import Post
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -22,7 +23,7 @@ def home(request):
 
     context = {
         'title': 'Title from context',
-        'posts': posts,
+        'posts': Post.objects.all(),
         'total': 111,
         'today': date.today().strftime("%Y-%m-%d"),
         'now': datetime.now().strftime("%Y-%m-%d %H:%M %p"),
