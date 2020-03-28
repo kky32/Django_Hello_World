@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -22,6 +24,8 @@ def home(request):
         'title': 'Title from context',
         'posts': posts,
         'total': 111,
+        'today': date.today().strftime("%Y-%m-%d"),
+        'now': datetime.now().strftime("%Y-%m-%d %H:%M %p"),
     }
     return render(request, 'blog/home.html', context=context)
 
