@@ -24,9 +24,12 @@ def home(request):
     context = {
         'title': 'Title from context',
         'posts': Post.objects.all(),
-        'total': 111,
         'today': date.today().strftime("%Y-%m-%d"),
         'now': datetime.now().strftime("%Y-%m-%d %H:%M %p"),
+        'test_total': len(posts),
+        'test_post': posts[0]['author'],
+        'test_len': len(Post.objects.all()),
+        'test_now': datetime.now().strftime("%Y-%m-%d %I:%M %p")
     }
     return render(request, 'blog/home.html', context=context)
 
