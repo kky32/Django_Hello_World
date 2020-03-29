@@ -26,6 +26,7 @@ def home(request):
         'posts': Post.objects.all(),
         'today': date.today().strftime("%Y-%m-%d"),
         'now': datetime.now().strftime("%Y-%m-%d %H:%M %p"),
+        'total': len(posts),
         'test_total': len(posts),
         'test_post': posts[0]['author'],
         'test_len': len(Post.objects.all()),
