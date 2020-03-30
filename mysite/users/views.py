@@ -27,8 +27,8 @@ def register(request):
 
 @login_required()
 def profile(request):
-    form_for_user_update = UserUpdateForm()
-    form_for_profile_update = ProfileUpdateForm()
+    form_for_user_update = UserUpdateForm(instance=request.user)
+    form_for_profile_update = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'form_u': form_for_user_update,
