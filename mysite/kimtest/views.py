@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from .models import Employee
+import datetime
 
 # Create your views here.
 def kimtest(request):
 
     emp1 = Employee('Abc', 'Xyz', 100)
 
+    # They are the same
     Employee.raise_amount = 1.22
-    Employee.set_raise_amt(1.11)
+    Employee.set_raise_amt(1.22)
 
     # example
     emp_str1 = 'KKK-YYY-10000'
@@ -22,6 +24,11 @@ def kimtest(request):
     print(f' emp1.raise_amount: {emp1.raise_amount}')
     print(f' Total Employees: {Employee.total_employee}')
     print(emp1.__dict__)
+
+    # test static method is_workday
+    my_date = datetime.date(2020, 3, 30)
+    # print(f' {my_date.strftime("%Y-%B-%d")}')
+    print(Employee.is_workday(my_date))
 
     context = {
         'test': emp1,
