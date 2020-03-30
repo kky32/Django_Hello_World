@@ -31,14 +31,13 @@ def profile(request):
         form_for_user_update = UserUpdateForm(request.POST, instance=request.user)
         form_for_profile_update = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
-        if form_for_user_update.is_valid():
+        # IF FORM IS VALID, SAVE DATA
+        if form_for_user_update.is_valid() and form_for_profile_update:
             form_for_user_update.save()
-
-        if form_for_profile_update.is_valid():
             form_for_profile_update.save()
 
-        if form_for_user_update.is_valid() and form_for_profile_update:
-            messages.success(request, f'Your profile has been updated.')
+            # PROVIDE FEEDBACK TO USER
+            messages.success(request, f'Your account has been updated.')
             return redirect('profile')
 
     else:
