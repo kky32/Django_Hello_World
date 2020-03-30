@@ -5,14 +5,22 @@ from .models import Employee
 def kimtest(request):
 
     emp1 = Employee('Abc', 'Xyz', 100)
-    emp2 = Employee('KKK', 'XXX', 111)
-    emp1.apply_raise()
-    emp1.apply_raise()
 
-    emp1.raise_amount = 1.11
-    print(f'Employee.raise_amount: {Employee.raise_amount}')
-    print(f'emp1.raise_amount: {emp1.raise_amount}')
-    print(f'Total Employees: {Employee.total_employee}')
+    Employee.raise_amount = 1.22
+    Employee.set_raise_amt(1.11)
+
+    # example
+    emp_str1 = 'KKK-YYY-10000'
+    emp_str2 = 'AAA-BBB-22000'
+    emp_str3 = 'YYY-ZZZ-33000'
+
+    emp2 = Employee.from_string(emp_str3)
+    print(f' emp2.pay: {emp2.pay}')
+
+    # emp1.raise_amount = 1.11
+    print(f' Employee.raise_amount: {Employee.raise_amount}')
+    print(f' emp1.raise_amount: {emp1.raise_amount}')
+    print(f' Total Employees: {Employee.total_employee}')
     print(emp1.__dict__)
 
     context = {

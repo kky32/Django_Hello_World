@@ -5,7 +5,6 @@ from django.db import models
 class testMyClass:
     pass
 
-
 class Employee:
 
     total_employee = 0
@@ -23,3 +22,12 @@ class Employee:
 
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
+
+    @classmethod
+    def set_raise_amt(cls, amount):
+        cls.raise_amount = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
