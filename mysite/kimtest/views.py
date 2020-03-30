@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee, Developer
 import datetime
 
 # Create your views here.
@@ -8,10 +8,10 @@ def kimtest(request):
     emp1 = Employee('Abc', 'Xyz', 100)
 
     # They are the same
-    Employee.raise_amount = 1.22
-    Employee.set_raise_amt(1.22)
+    Employee.raise_amount = 1.04
+    Employee.set_raise_amt(1.04)
 
-    # example
+    # example of @classmethod from_string()
     emp_str1 = 'KKK-YYY-10000'
     emp_str2 = 'AAA-BBB-22000'
     emp_str3 = 'YYY-ZZZ-33000'
@@ -29,6 +29,13 @@ def kimtest(request):
     my_date = datetime.date(2020, 3, 30)
     # print(f' {my_date.strftime("%Y-%B-%d")}')
     print(Employee.is_workday(my_date))
+
+    dev1 = Developer('Kim', 'Zzz', 123)
+    dev1.apply_raise()
+    print(f' {dev1.__dict__}')
+    # print(help(dev1))
+
+
 
     context = {
         'test': emp1,

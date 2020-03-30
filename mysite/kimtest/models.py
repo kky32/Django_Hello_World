@@ -39,3 +39,6 @@ class Employee:
             return False
         else:
             return True
+
+class Developer(Employee):
+    raise_amount = 1.10
