@@ -8,15 +8,18 @@ class testMyClass:
 
 class Employee:
 
+    total_employee = 0
+    raise_amount = 1.04
+
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
         self.pay = pay
         self.email = first + '.' + last + '@company.com'
+        Employee.total_employee += 1
 
     def fullInfo(self):
-        return f'Employee\'s full information: {self.first} {self.last}. {self.email}'
+        return f'Employee\'s full information: {self.email}. Pay: {self.pay}'
 
-emp1 = Employee('abc', 'xyz', 50000)
-
-print(emp1.fullInfo())
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)

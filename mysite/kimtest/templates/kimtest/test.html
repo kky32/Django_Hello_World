@@ -3,11 +3,28 @@
 {% block content %}
     <h1>kimtest</h1>
 
-    {{ test }}  </br>
-    {{ kim }}   </br>
+<div class="KimTestStyle border border-dark">emp1.__dict__ </br>
+    {{ test.email }}</div>
+<div class="KimTestStyle border border-dark">emp1.__dict__ </br>
+    {{ kim }}</div>
+<div class="KimTestStyle border border-dark">emp1.__dict__ </br>
+    {{ kim2 }}</div>
 
-    test_total:                 {{ test_total }} </br>
-    test_post[0]['author']:     {{ test_post }} </br>
-    test_len:                   {{ test_len }} </br>
-    test_now:                   {{ test_now }} </br>
+<div class="KimTestStyle border border-info">emp1.raise_amount </br>
+    {{ example1 }}</div>
+<div class="KimTestStyle border border-info">Employee.raise_amount </br>
+    {{ example2 }}</div>
+
+<div class="KimTestStyle border border-danger">emp1.__dict__ </br>
+    {{ dict }}</div>
+<div class=" KimTestStyle border border-danger">Employee.__dict__ </br>
+    {{ dict1 }}</div>
+<div class=" KimTestStyle border border-danger">emp1.__dict__.items() </br>
+    {{ dict2 }}</div>
+<div class="KimTestStyle border border-danger">emp1.__dict__.keys() </br>
+    {{ dict3 }}</div>
+<div class="KimTestStyle border border-danger">emp1.__dict__.values() </br>
+    {{ dict4 }}</div>
+
+
 {% endblock content %}
