@@ -8,7 +8,7 @@ def kimtest(request):
 
     context = {
         'test': 'Random string goes here',
-        'kim' : kim,
+        'kim' : kim.fullInfo()
     }
     return render(request, 'kimtest/test.html', context)
 

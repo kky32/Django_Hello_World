@@ -15,7 +15,7 @@ class Employee:
         self.email = first + '.' + last + '@company.com'
 
     def fullInfo(self):
-        return f'Full information of employee. {self.first} {self.last}. {self.email}'
+        return f'Employee\'s full information: {self.first} {self.last}. {self.email}'
 
 emp1 = Employee('abc', 'xyz', 50000)
 
