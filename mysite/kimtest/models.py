@@ -25,6 +25,9 @@ class Employee:
     def __str__(self):
         return f'{self.email}'
 
+    def __add__(self, other):
+        return self.pay + int(other.pay)
+
     def fullInfo(self):
         return f'Employee\'s full information: {self.email}. Pay: {self.pay}'
 

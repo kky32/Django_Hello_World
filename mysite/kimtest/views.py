@@ -8,8 +8,8 @@ def kimtest(request):
     emp1 = Employee('Abc', 'Xyz', 100)
 
     # They are the same
-    Employee.raise_amount = 1.04
-    Employee.set_raise_amt(1.04)
+    Employee.raise_amount = 1.00
+    Employee.set_raise_amt(1.00)
 
     # example of @classmethod from_string()
     emp_str1 = 'KKK-YYY-10000'
@@ -30,12 +30,12 @@ def kimtest(request):
     # print(f' {my_date.strftime("%Y-%B-%d")}')
     print(Employee.is_workday(my_date))
 
-    dev1 = Developer('Kim', 'Zzz', 123, 'Python')
+    dev1 = Developer('Kim', 'Zzz', 100, 'Python')
     dev1.apply_raise()
     print(f' {dev1.__dict__} \n')
     # print(help(dev1))
 
-    manager1 = Manager('Big', 'Manager', 200, [emp1])
+    manager1 = Manager('Big', 'Manager', 101, [emp1])
     manager1.add_emp_to_manage(dev1)
     manager1.add_emp_to_manage(manager1)
     manager1.show_emp_managing() # prints 3 employees
@@ -54,6 +54,16 @@ def kimtest(request):
     print(manager1)
     print(repr(manager1))
     print(str(manager1))
+
+    # They are the same
+    print(1+2)
+    print(int.__add__(1, 2))
+
+    # They are the same
+    print('a' + 'b')
+    print(str.__add__('a', 'b'))
+
+    print(emp1 + emp2)
 
     context = {
         'test': emp1,
