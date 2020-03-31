@@ -35,7 +35,7 @@ def kimtest(request):
     print(f' {dev1.__dict__} \n')
     # print(help(dev1))
 
-    manager1 = Manager('Big Manager', 'B', 200, [emp1])
+    manager1 = Manager('Big', 'Manager', 200, [emp1])
     manager1.add_emp_to_manage(dev1)
     manager1.add_emp_to_manage(manager1)
     manager1.show_emp_managing() # prints 3 employees
@@ -50,6 +50,10 @@ def kimtest(request):
 
     # Check if subclass
     print(issubclass(Manager, Employee))
+
+    print(manager1)
+    print(repr(manager1))
+    print(str(manager1))
 
     context = {
         'test': emp1,

@@ -17,6 +17,14 @@ class Employee:
         self.email = first + '.' + last + '@company.com'
         Employee.total_employee += 1
 
+    # More for developer
+    def __repr__(self):
+        return f'{self.first}, {self.last}, {self.pay}, {self.email}'
+
+    # More for End user
+    def __str__(self):
+        return f'{self.email}'
+
     def fullInfo(self):
         return f'Employee\'s full information: {self.email}. Pay: {self.pay}'
 
@@ -52,9 +60,10 @@ class Developer(Employee):
         # Below is the same super().__init__()
         # Employee.__init__(self, first, last, pay)
 
+
 class Manager(Employee):
 
-    def __init__(self, first, last, pay, employees=None,):
+    def __init__(self, first, last, pay, employees=None, ):
         super().__init__(first, last, pay)
 
         if employees is None:
