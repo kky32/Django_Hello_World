@@ -45,6 +45,12 @@ def kimtest(request):
     manager1.show_emp_managing() # prints 2 employees
     print(f'{manager1.__dict__}')
 
+    # Check if instance of a class
+    print(isinstance(manager1, Manager))
+
+    # Check if subclass
+    print(issubclass(Manager, Employee))
+
     context = {
         'test': emp1,
 
