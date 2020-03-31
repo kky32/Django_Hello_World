@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee, Developer
+from .models import Employee, Developer, Manager
 import datetime
 
 # Create your views here.
@@ -30,12 +30,20 @@ def kimtest(request):
     # print(f' {my_date.strftime("%Y-%B-%d")}')
     print(Employee.is_workday(my_date))
 
-    dev1 = Developer('Kim', 'Zzz', 123)
+    dev1 = Developer('Kim', 'Zzz', 123, 'Python')
     dev1.apply_raise()
-    print(f' {dev1.__dict__}')
+    print(f' {dev1.__dict__} \n')
     # print(help(dev1))
 
+    manager1 = Manager('Big Manager', 'B', 200, [emp1])
+    manager1.add_emp_to_manage(dev1)
+    manager1.add_emp_to_manage(manager1)
+    manager1.show_emp_managing() # prints 3 employees
+    print(f'{manager1.__dict__}')
 
+    manager1.remove_emp_to_manage(manager1)
+    manager1.show_emp_managing() # prints 2 employees
+    print(f'{manager1.__dict__}')
 
     context = {
         'test': emp1,

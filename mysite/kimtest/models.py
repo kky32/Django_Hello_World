@@ -5,8 +5,8 @@ from django.db import models
 class testMyClass:
     pass
 
-class Employee:
 
+class Employee:
     total_employee = 0
     raise_amount = 1.04
 
@@ -40,5 +40,36 @@ class Employee:
         else:
             return True
 
+
 class Developer(Employee):
     raise_amount = 1.10
+
+    def __init__(self, first, last, pay, language):
+        # Ask the parent class to handle below
+        super().__init__(first, last, pay)
+        self.language = language
+
+        # Below is the same super().__init__()
+        # Employee.__init__(self, first, last, pay)
+
+class Manager(Employee):
+
+    def __init__(self, first, last, pay, employees=None,):
+        super().__init__(first, last, pay)
+
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_emp_to_manage(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_emp_to_manage(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+
+    def show_emp_managing(self):
+        for emp in self.employees:
+            print(f'-->{emp.fullInfo()}')
