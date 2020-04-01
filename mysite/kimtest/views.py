@@ -2,9 +2,9 @@ from django.shortcuts import render
 from .models import Employee, Developer, Manager
 import datetime
 
+
 # Create your views here.
 def kimtest(request):
-
     emp1 = Employee('Abc', 'Xyz', 100)
 
     # They are the same
@@ -38,11 +38,11 @@ def kimtest(request):
     manager1 = Manager('Big', 'Manager', 101, [emp1])
     manager1.add_emp_to_manage(dev1)
     manager1.add_emp_to_manage(manager1)
-    manager1.show_emp_managing() # prints 3 employees
+    manager1.show_emp_managing()  # prints 3 employees
     print(f'{manager1.__dict__}')
 
     manager1.remove_emp_to_manage(manager1)
-    manager1.show_emp_managing() # prints 2 employees
+    manager1.show_emp_managing()  # prints 2 employees
     print(f'{manager1.__dict__}')
 
     # Check if instance of a class
@@ -56,7 +56,7 @@ def kimtest(request):
     print(str(manager1))
 
     # They are the same
-    print(1+2)
+    print(1 + 2)
     print(int.__add__(1, 2))
 
     # They are the same
@@ -90,7 +90,7 @@ def kimtest(request):
     context = {
         'test': emp1,
 
-        'kim' : emp1.fullInfo(),
+        'kim': emp1.fullInfo(),
         'kim2': Employee.fullInfo(emp1),
 
         'example1': emp1.raise_amount,
@@ -106,4 +106,26 @@ def kimtest(request):
     return render(request, 'kimtest/test.html', context)
 
 
+def test2(request):
 
+    nums = [1, 2, 3]
+    # for n in nums:
+    #     print(n)
+
+    # Will error as list nums is not an iterator
+    # print(next(nums))
+
+    # Same thing
+    # i_num = nums.__iter__()
+    i_num = iter(nums)
+
+    print(i_num)
+    # print(dir(i_num))
+    print(next(i_num))
+    print(next(i_num))
+    print(next(i_num))
+
+    context = {
+        'test': dir(nums),
+    }
+    return render(request, 'kimtest/test2.html', context=context)
