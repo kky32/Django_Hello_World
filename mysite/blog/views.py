@@ -4,7 +4,7 @@ from .models import Post
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 posts = [
     {
@@ -59,3 +59,14 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content', ]
+
+    # Overwrite parent method
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        # Will be run on parent class with author
+        return super().form_valid(form)

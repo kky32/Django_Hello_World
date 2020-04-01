@@ -56,10 +56,11 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Each Post
+                Post
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/blog/post/1">post (class based view)</a>
+                <a class="dropdown-item" href="{% url 'postListView' %}">All Post (class based view)</a>
+                <a class="dropdown-item" href="{% url 'post-create' %}">post-create (class based view)</a>
             </div>
         </li>
 
