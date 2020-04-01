@@ -1,6 +1,6 @@
 from datetime import datetime, date
 from .models import Post
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -61,7 +61,9 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(CreateView):
+# We can't use decorators on class
+# Use LoginRequiredMixin class to inherit
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content', ]
 
