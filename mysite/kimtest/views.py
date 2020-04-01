@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee, Developer, Manager
+from .models import Employee, Developer, Manager, MyRange
 import datetime
 
 
@@ -107,7 +107,6 @@ def kimtest(request):
 
 
 def test2(request):
-
     nums = [1, 2, 3]
     # for n in nums:
     #     print(n)
@@ -124,6 +123,25 @@ def test2(request):
     print(next(i_num))
     print(next(i_num))
     print(next(i_num))
+
+    myNum = MyRange(1, 10)
+    print(next(myNum))
+    print(next(myNum))
+
+    # Generator function
+    def my_range_function(start, end):
+        current = start;
+        while current < end:
+            yield current
+            current += 1
+
+    myNum2 = my_range_function(1, 10)
+    print(next(myNum2))
+    print(next(myNum2))
+    print(next(myNum2))
+
+    for n in myNum2:
+        print(n)
 
     context = {
         'test': dir(nums),

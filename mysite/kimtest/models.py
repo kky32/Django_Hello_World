@@ -114,3 +114,21 @@ class Manager(Employee):
     def show_emp_managing(self):
         for emp in self.employees:
             print(f'-->{emp.fullInfo()}')
+
+
+class MyRange:
+
+    def __init__(self, start, end):
+        self.value = start
+        self.end = end
+
+    # Make my class Iterable
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.value >= self.end:
+            raise StopIteration
+        current = self.value
+        self.value += 1
+        return current
