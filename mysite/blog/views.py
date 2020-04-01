@@ -4,6 +4,8 @@ from .models import Post
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from django.views.generic import ListView, DetailView
+
 posts = [
     {
         'author': 'Kim',
@@ -19,8 +21,8 @@ posts = [
     },
 ]
 
-def home(request):
 
+def home(request):
     context = {
         'title': 'Title from context',
         'posts': Post.objects.all(),
@@ -34,6 +36,7 @@ def home(request):
     }
     return render(request, 'blog/home.html', context=context)
 
+
 def about(request):
     return render(request, 'blog/about.html')
 
@@ -44,3 +47,15 @@ def homeOld(request):
 
 def aboutOld(request):
     return HttpResponse('Blog About')
+
+
+# Example of class based views
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/home.html'
+    context_object_name = 'posts'
+    ordering = ['-date_created']
+
+
+class PostDetailView(DetailView):
+    model = Post

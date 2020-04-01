@@ -43,12 +43,32 @@
             </div>
         </li>
 
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Home
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/">Home</a>
+                <a class="dropdown-item" href="{% url 'blog-home' %}">url 'blog-home'</a>
+                <a class="dropdown-item" href="/blog/postListView">postListView (class based view)</a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Each Post
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/blog/post/1">post (class based view)</a>
+            </div>
+        </li>
+
 
 
             <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link" href="/about">About</a>
 
-            <a class="nav-item nav-link" href="{% url 'blog-home' %}">blog-home</a>
+
             <a class="nav-item nav-link" href="{% url 'blog-about' %}">blog-about</a>
 
         </div>
