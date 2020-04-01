@@ -75,7 +75,13 @@ def kimtest(request):
 
     # @property
     manager1.first = 'Small'
-    print(manager1.getEmail)
+    print(manager1.email)
+
+    # @getFullName.setter
+    manager1.fullname = 'Up Down'
+    print(manager1.fullname)
+    print(manager1.email)
+    print(manager1.fullInfo)
 
     context = {
         'test': emp1,

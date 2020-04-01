@@ -14,7 +14,7 @@ class Employee:
         self.first = first
         self.last = last
         self.pay = pay
-        self.email = first + '.' + last + '@company.com'
+        # self.email = first + '.' + last + '@company.com'
         Employee.total_employee += 1
 
     # More for developer
@@ -33,9 +33,20 @@ class Employee:
     def __len__(self):
         return len(self.fullInfo())
 
+    # When using @property decorator, must remove the original variable in class
     @property
-    def getEmail(self):
+    def email(self):
         return f'{self.first}.{self.last}@email.com'
+
+    @property
+    def fullname(self):
+        return f'{self.first} {self.last}'
+
+    @fullname.setter
+    def fullname(self, given):
+        first, last = given.split(' ')
+        self.first = first
+        self.last = last
 
     def fullInfo(self):
         return f'Employee\'s full information: {self.email}. Pay: {self.pay}'
