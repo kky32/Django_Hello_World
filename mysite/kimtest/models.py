@@ -33,7 +33,7 @@ class Employee:
     def __len__(self):
         return len(self.fullInfo())
 
-    # When using @property decorator, must remove the original variable in class
+    # When using @property decorator, must remove the original variable from class
     @property
     def email(self):
         return f'{self.first}.{self.last}@email.com'
@@ -43,10 +43,19 @@ class Employee:
         return f'{self.first} {self.last}'
 
     @fullname.setter
-    def fullname(self, given):
-        first, last = given.split(' ')
-        self.first = first
-        self.last = last
+    def fullname(self, given, **kwargs):
+        extraction = given.split(' ')
+        self.first = extraction[0]
+        self.last = extraction[1]
+
+        for key, value in kwargs.items():
+            pass
+
+    @fullname.deleter
+    def fullname(self):
+        print('Deleted Name!')
+        self.first = None
+        self.last = None
 
     def fullInfo(self):
         return f'Employee\'s full information: {self.email}. Pay: {self.pay}'

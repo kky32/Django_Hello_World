@@ -77,11 +77,15 @@ def kimtest(request):
     manager1.first = 'Small'
     print(manager1.email)
 
-    # @getFullName.setter
-    manager1.fullname = 'Up Down'
+    # @fullname.setter
+    manager1.fullname = 'First Last Side Up'
     print(manager1.fullname)
     print(manager1.email)
-    print(manager1.fullInfo)
+
+    # @fullname.deleter
+    del manager1.fullname
+    print(manager1.fullname)
+    print(manager1.email)
 
     context = {
         'test': emp1,
