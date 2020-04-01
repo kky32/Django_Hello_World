@@ -65,6 +65,18 @@ def kimtest(request):
 
     print(emp1 + emp2)
 
+    # They are the same
+    print(len('test'))
+    print('test'.__len__())
+
+    # They are the same
+    print(len(manager1))
+    print(manager1.__len__())
+
+    # @property
+    manager1.first = 'Small'
+    print(manager1.getEmail)
+
     context = {
         'test': emp1,
 

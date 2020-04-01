@@ -25,14 +25,25 @@ class Employee:
     def __str__(self):
         return f'{self.email}'
 
+    # Over writing default add
     def __add__(self, other):
         return self.pay + int(other.pay)
+
+    # Overwriting default len
+    def __len__(self):
+        return len(self.fullInfo())
+
+    @property
+    def getEmail(self):
+        return f'{self.first}.{self.last}@email.com'
 
     def fullInfo(self):
         return f'Employee\'s full information: {self.email}. Pay: {self.pay}'
 
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
+
+
 
     @classmethod
     def set_raise_amt(cls, amount):
