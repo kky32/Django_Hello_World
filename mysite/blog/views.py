@@ -95,6 +95,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = models.Post
+    success_url = '/profile'
 
     # Prevent other users from deleting your post
     def test_func(self):
