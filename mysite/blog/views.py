@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 posts = [
     {
@@ -85,6 +85,18 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     # Prevent other users from updating other people's post
+    def test_func(self):
+        this_post = self.get_object()
+        if this_post.author == self.request.user:
+            return True
+        else:
+            return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = models.Post
+
+    # Prevent other users from deleting your post
     def test_func(self):
         this_post = self.get_object()
         if this_post.author == self.request.user:
