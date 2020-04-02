@@ -87,7 +87,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # Prevent other users from updating other people's post
     def test_func(self):
         this_post = self.get_object()
-        if this_post == self.request.user:
+        if this_post.author == self.request.user:
             return True
         else:
             return False
