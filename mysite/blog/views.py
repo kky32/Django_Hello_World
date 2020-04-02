@@ -1,10 +1,11 @@
 from datetime import datetime, date
-from .models import Post
-from django.contrib.auth.mixins import LoginRequiredMixin
+# from .models import Post
+from . import models
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 posts = [
     {
@@ -25,13 +26,13 @@ posts = [
 def home(request):
     context = {
         'title': 'Title from context',
-        'posts': Post.objects.all(),
+        'posts': models.Post.objects.all(),
         'today': date.today().strftime("%Y-%m-%d"),
         'now': datetime.now().strftime("%Y-%m-%d %H:%M %p"),
         'total': len(posts),
         'test_total': len(posts),
         'test_post': posts[0]['author'],
-        'test_len': len(Post.objects.all()),
+        'test_len': len(models.Post.objects.all()),
         'test_now': datetime.now().strftime("%Y-%m-%d %I:%M %p")
     }
     return render(request, 'blog/home.html', context=context)
@@ -51,24 +52,42 @@ def aboutOld(request):
 
 # Example of class based views
 class PostListView(ListView):
-    model = Post
+    model = models.Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_created']
 
 
 class PostDetailView(DetailView):
-    model = Post
+    model = models.Post
 
 
 # We can't use decorators on class
 # Use LoginRequiredMixin class to inherit
 class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
+    model = models.Post
     fields = ['title', 'content', ]
 
     # Overwrite parent method
+    # Getting current user into form.instance.author (post.author)
     def form_valid(self, form):
         form.instance.author = self.request.user
         # Will be run on parent class with author
         return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = models.Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # Prevent other users from updating other people's post
+    def test_func(self):
+        this_post = self.get_object()
+        if this_post == self.request.user:
+            return True
+        else:
+            return False
