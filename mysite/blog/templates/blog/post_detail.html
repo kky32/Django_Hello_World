@@ -8,13 +8,28 @@
 
         <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ object.author }}</a>
+              <a class="mr-2" href="{% url 'profile' %}">{{ object.author }}</a>
               <small class="text-muted">{{ object.date_posted | date:"Y-m-d h:i a" }}</small>
+
+                {% if object.author.id == request.user.id %}
+                <div>
+                    <a class="btn btn-sm mb-2 btn-outline-secondary" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="btn btn-sm mb-2 btn-outline-danger" href="{% url 'post-delete' object.id %}">Delete</a>
+                </div>
+                {% endif %}
             </div>
         <h2 CLASS="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
         </div>
     </article>
+
+Testing
+<div class="content-section">
+    <p>object.author: {{ object.author }}</p>
+    <p>request.user: {{ request.user }}</p>
+    <p>object.author.user.id: {{ object.author.id }}</p>
+    <p>request.user.id: {{ request.user.id }}</p>
+</div>
 
 
 {% endblock content %}
