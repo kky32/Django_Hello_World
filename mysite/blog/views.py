@@ -33,7 +33,9 @@ def home(request):
         'test_total': len(posts),
         'test_post': posts[0]['author'],
         'test_len': len(models.Post.objects.all()),
-        'test_now': datetime.now().strftime("%Y-%m-%d %I:%M %p")
+        'test_now': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
+
+        'total_posts': models.Post.objects.all().count,
     }
     return render(request, 'blog/home.html', context=context)
 
@@ -55,7 +57,8 @@ class PostListView(ListView):
     model = models.Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
-    ordering = ['-date_created']
+    paginate_by = 2
+    ordering = ['-date_modified']
 
 
 class PostDetailView(DetailView):

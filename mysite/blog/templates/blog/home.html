@@ -18,6 +18,42 @@
         </article>
     {% endfor %}
 
+<!--KIM put your pagination here-->
+    {% if is_paginated %}
+
+        <!--Show First & Previous -->
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info" href="?page=1">First</a>
+        <a class="btn btn-outline-info" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <!--Loop all pages-->
+        {% for num in page_obj.paginator.page_range %}
+
+            <!--If current page, Print current page differently-->
+            {% if num == page_obj.number %}
+                <a class="btn btn-info" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+
+            <!--Print nearby pages-->
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+
+        {% endfor %}
+
+        <!--Show Next and Last page-->
+        {% if page_obj.has_next %}
+        <a class="btn btn-outline-info" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+
+    {% endif %}
+<!--End of your pagination Kim-->
+
+
+
+
+</br>
     test_total:                 {{ test_total }} </br>
     test_post[0]['author']:     {{ test_post }} </br>
     test_len:                   {{ test_len }} </br>
