@@ -2,8 +2,11 @@ from datetime import datetime, date
 # from .models import Post
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+
+# Import User model for custom query later for PostListViewByUser
+from django.contrib.auth.models import User
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -59,6 +62,22 @@ class PostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 2
     ordering = ['-date_modified']
+
+
+# Post by user only
+class PostListViewByUser(ListView):
+    model = models.Post
+    template_name = 'blog/post_list_by_user.html'
+    context_object_name = 'posts'
+    paginate_by = 10
+
+    ordering = ['-date_modified']
+
+    # Custom query. Find user
+    def get_queryset(self):
+        # Get user string from url
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return models.Post.objects.filter(author_id=user.id).order_by('-date_modified')
 
 
 class PostDetailView(DetailView):

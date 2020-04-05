@@ -61,6 +61,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'postListView' %}">All Post (class based view)</a>
                 <a class="dropdown-item" href="{% url 'post-create' %}">post-create (class based view)</a>
+                <a class="dropdown-item" href="{% url 'posts-by-user' request.user %}">posts-by-user</a>
             </div>
         </li>
 
