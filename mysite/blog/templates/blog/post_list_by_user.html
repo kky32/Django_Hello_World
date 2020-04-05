@@ -1,3 +1,7 @@
+<div class="ml-5 pl-5">
+    <h4>posts-by-user</h4>
+    <h5>{{ view.kwargs.username }} has {{ page_obj.paginator.count }}</h5>
+</div>
 <div class="basic">
     {% include "blog\home.html" %}
 </div>

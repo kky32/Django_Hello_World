@@ -69,11 +69,12 @@ class PostListViewByUser(ListView):
     model = models.Post
     template_name = 'blog/post_list_by_user.html'
     context_object_name = 'posts'
-    paginate_by = 10
+    paginate_by = 2
 
+    # This will be overwritten too by get_queryset() function below.
     ordering = ['-date_modified']
 
-    # Custom query. Find user
+    # Custom query. Find user from URL with self.kwargs.get('username')
     def get_queryset(self):
         # Get user string from url
         user = get_object_or_404(User, username=self.kwargs.get('username'))
