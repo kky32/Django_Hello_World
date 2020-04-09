@@ -15,8 +15,8 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     # REDUCE uploaded image
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
         # Open uploaded image
         img = Image.open(self.image.path)
